@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <meta name="renderer" content="webkit|ie-comp|ie-stand">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+  <meta content="yes" name="apple-mobile-web-app-capable"/>
+  <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+<title>CSS3逼真的蝴蝶飞舞动画 -A5源码</title>
+<meta name="keywords" content="canvas动画, 手机微信网站特效, css3动画, html5特效, 网页特效" />
+<meta name="description" content="A5源码-专注于HTML5、CSS3、js、jQuery、手机移动端等网页特效的手机与分享。所有的资源都免费提供广大童鞋下载学习和使用。" />
+
+  
+
+  
+      <style>
+      
+      body{
+  background-color: #fff;
+}
+
+#container {
+opacity: 0;
+height: 667px;
+overflow: hidden;
+background: #fff url(bg.jpg) no-repeat center top;
+background-size: 100% auto;
+animation-name: container;
+animation-duration: 4s;
+animation-delay: 1s;
+animation-timing-function: linear;
+}
+#guider {
+position: absolute;
+top: 0;
+width: 100%;
+height: 667px;
+overflow: hidden;
+background: #fff url(guide.jpg) no-repeat center top;
+background-size: 100% auto;
+animation-name: guider;
+animation-duration: 4s;
+animation-timing-function: linear;
+}
+#butterfly {
+transform: rotateZ(30deg) rotate3d(0, 1, 0, 0deg) scale3d(0.5, 0.5, 0.5);
+position: absolute;
+left: -350px;
+top: 280px;
+width: 400px;
+height: 238px;
+transform-style: preserve-3d;
+/*Fly in a loop below*/
+animation-name: butterflyani;
+animation-duration: 5s;
+animation-timing-function: linear;
+}
+
+.wing {
+transform: rotateX(30deg)  translate3d(-200px, 0px, 0px) rotate3d(0, 1, 0, 160deg);
+transform-origin: top right;
+position: absolute;
+left: 200px;
+top: 0px;
+width: 200px;
+height: 238px;
+background: url(butterfly.png) no-repeat;
+animation-name: rightwingani;
+animation-duration: 0.6s;
+animation-iteration-count: infinite;
+animation-timing-function: ease-out;
+}
+
+#butterfly .left{
+transform: rotateX(30deg) rotate3d(0, 1, 0, 0deg);
+animation-name: leftwingani;
+left: 0px;
+top: 0px;
+}
+
+@keyframes rightwingani {
+	from {
+		transform:rotateX(30deg) translate3d(-200px, 0px, 0px) rotate3d(0, 1, 0, 160deg);
+	}
+	50% {
+		transform:rotateX(30deg) translate3d(-200px, 0px, 0px) rotate3d(0, 1, 0, 100deg);
+	}
+	to{
+		transform:rotateX(30deg) translate3d(-200px, 0px, 0px) rotate3d(0, 1, 0, 160deg);
+	}
+}
+
+@keyframes leftwingani {
+	from {
+		transform:rotateX(30deg) rotate3d(0, 1, 0, 0deg);
+	}
+	50% {
+		transform:rotateX(30deg) rotate3d(0, 1, 0, 80deg);
+	}
+	to{
+		transform:rotateX(30deg) rotate3d(0, 1, 0, 00deg);
+	}
+}
+
+@-webkit-keyframes butterflyani {
+    0%        { opacity: 0; }
+    10%       { left: -320px; top: 280px; opacity: 1; }
+    20%       { left: -240px; top: 240px; }
+    30%       { left: -160px; top: 200px; }
+    60%       { left: -80px; top: 160px; }
+    70%       { left: 0px; top: 120px; }
+    80%       { left: 80px; top: 80px; opacity: 0.6; }
+    100%      { left: 160px; top: 40px; opacity: 0; }
+}
+
+@-webkit-keyframes container {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: .4
+  }
+  50% {
+    opacity: 1;
+  }
+  80% {
+    opacity: .4;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes guider {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: .4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+    </style>
+
+ 
+
+</head>
+
+<body id="body">
+  <div id="container"></div>
+  <div id="butterfly">
+    <div class="left wing"></div>
+    <div class="right wing"></div>    
+  </div>
+  <script>
+    (function() {
+        var parent = document.getElementById('body');
+      　//添加 div
+　　　　var div = document.createElement("div");
+
+　　　　//设置 div 属性，如 id
+　　　　div.setAttribute("id", "guider");
+      setTimeout(function() {
+        parent.appendChild(div);
+      }, 5000)
+    })();
+  </script>
+</body>
+</html>
