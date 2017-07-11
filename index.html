@@ -27,23 +27,11 @@ overflow: hidden;
 background: #fff url(bg.jpg) no-repeat center top;
 background-size: 100% auto;
 animation-name: container;
-animation-duration: 4s;
-animation-delay: 1s;
+animation-duration: 8s;
+animation-delay: 4s;
 animation-timing-function: linear;
 }
-#guider {
-position: absolute;
-top: 0;
-width: 100%;
-height: 667px;
-overflow: hidden;
-background: #fff url(guide.jpg) no-repeat center top;
-background-size: 100% auto;
-animation-name: guider;
-animation-duration: 4s;
-animation-timing-function: linear;
-}
-#butterfly {
+#butterfly1 {
 transform: rotateZ(30deg) rotate3d(0, 1, 0, 0deg) scale3d(0.5, 0.5, 0.5);
 position: absolute;
 left: -350px;
@@ -52,12 +40,25 @@ width: 400px;
 height: 238px;
 transform-style: preserve-3d;
 /*Fly in a loop below*/
-animation-name: butterflyani;
-animation-duration: 5s;
+animation-name: butterfly1ani;
+animation-duration: 6s;
+animation-timing-function: linear;
+}
+#butterfly2 {
+transform: rotateZ(-30deg) rotate3d(0, 1, 0, 0deg) scale3d(0.5, 0.5, 0.5);
+position: absolute;
+left: 350px;
+top: 280px;
+width: 400px;
+height: 238px;
+transform-style: preserve-3d;
+/*Fly in a loop below*/
+animation-name: butterfly2ani;
+animation-duration: 6s;
 animation-timing-function: linear;
 }
 
-.wing {
+.wing1 {
 transform: rotateX(30deg)  translate3d(-200px, 0px, 0px) rotate3d(0, 1, 0, 160deg);
 transform-origin: top right;
 position: absolute;
@@ -65,20 +66,40 @@ left: 200px;
 top: 0px;
 width: 200px;
 height: 238px;
-background: url(butterfly.png) no-repeat;
+background: url(butterfly1.png) no-repeat;
 animation-name: rightwingani;
 animation-duration: 0.6s;
 animation-iteration-count: infinite;
 animation-timing-function: ease-out;
 }
 
-#butterfly .left{
+.wing2 {
+transform: rotateX(30deg)  translate3d(-200px, 0px, 0px) rotate3d(0, 1, 0, 160deg);
+transform-origin: top right;
+position: absolute;
+left: 200px;
+top: 0px;
+width: 200px;
+height: 238px;
+background: url(butterfly2.png) no-repeat;
+animation-name: rightwingani;
+animation-duration: 0.6s;
+animation-iteration-count: infinite;
+animation-timing-function: ease-out;
+}
+
+#butterfly1 .left{
 transform: rotateX(30deg) rotate3d(0, 1, 0, 0deg);
 animation-name: leftwingani;
 left: 0px;
 top: 0px;
 }
-
+#butterfly2 .left{
+transform: rotateX(30deg) rotate3d(0, 1, 0, 0deg);
+animation-name: leftwingani;
+left: 0px;
+top: 0px;
+}
 @keyframes rightwingani {
 	from {
 		transform:rotateX(30deg) translate3d(-200px, 0px, 0px) rotate3d(0, 1, 0, 160deg);
@@ -103,15 +124,25 @@ top: 0px;
 	}
 }
 
-@-webkit-keyframes butterflyani {
+@-webkit-keyframes butterfly1ani {
     0%        { opacity: 0; }
     10%       { left: -320px; top: 280px; opacity: 1; }
     20%       { left: -240px; top: 240px; }
     30%       { left: -160px; top: 200px; }
-    60%       { left: -80px; top: 160px; }
-    70%       { left: 0px; top: 120px; }
-    80%       { left: 80px; top: 80px; opacity: 0.6; }
+    60%       { left: -80px; top: 160px; opacity: 0.6;}
+    70%       { left: 0px; top: 120px; opacity: 0;}
+    80%       { left: 80px; top: 80px; opacity: 0; }
     100%      { left: 160px; top: 40px; opacity: 0; }
+}
+@-webkit-keyframes butterfly2ani {
+    0%        { opacity: 0; }
+    10%       { left: 320px; top: 280px; opacity: 1; }
+    20%       { left: 240px; top: 240px; }
+    30%       { left: 160px; top: 200px; }
+    60%       { left: 80px; top: 160px; opacity: 0.6;}
+    70%       { left: 0px; top: 120px; opacity: 0;}
+    80%       { left: -80px; top: 80px; opacity: 0; }
+    100%      { left: -160px; top: 40px; opacity: 0; }
 }
 
 @-webkit-keyframes container {
@@ -119,24 +150,13 @@ top: 0px;
     opacity: 0;
   }
   20% {
-    opacity: .4
+    opacity: .2;
   }
   50% {
-    opacity: 1;
+    opacity: .5;
   }
   80% {
-    opacity: .4;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@-webkit-keyframes guider {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: .4;
+    opacity: .8;
   }
   100% {
     opacity: 1;
@@ -150,22 +170,13 @@ top: 0px;
 
 <body id="body">
   <div id="container"></div>
-  <div id="butterfly">
-    <div class="left wing"></div>
-    <div class="right wing"></div>    
+  <div id="butterfly1">
+    <div class="left wing1"></div>
+    <div class="right wing1"></div>    
   </div>
-  <script>
-    (function() {
-        var parent = document.getElementById('body');
-      　//添加 div
-　　　　var div = document.createElement("div");
-
-　　　　//设置 div 属性，如 id
-　　　　div.setAttribute("id", "guider");
-      setTimeout(function() {
-        parent.appendChild(div);
-      }, 5000)
-    })();
-  </script>
+  <div id="butterfly2">
+    <div class="left wing2"></div>
+    <div class="right wing2"></div>    
+  </div>
 </body>
 </html>
